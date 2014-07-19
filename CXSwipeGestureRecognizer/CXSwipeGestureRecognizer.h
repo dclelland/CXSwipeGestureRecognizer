@@ -27,8 +27,8 @@ typedef enum : NSUInteger {
 - (void)gestureRecognizerDidCancel:(CXSwipeGestureRecognizer *)gestureRecognizer;
 - (void)gestureRecognizerDidFinish:(CXSwipeGestureRecognizer *)gestureRecognizer;
 
-- (BOOL)gestureRecognizerShouldBounce:(CXSwipeGestureRecognizer *)gestureRecognizer;
 - (BOOL)gestureRecognizerShouldCancel:(CXSwipeGestureRecognizer *)gestureRecognizer;
+- (BOOL)gestureRecognizerShouldBounce:(CXSwipeGestureRecognizer *)gestureRecognizer;
 
 @end
 

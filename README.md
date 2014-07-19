@@ -44,16 +44,18 @@ UIGestureRecognizer subclass that takes much of the effort out of managing direc
     NSLog(@"velocity: %f", gestureRecognizer.velocity);
     NSLog(@"progress: %f", gestureRecognizer.progress);
 
-✓ Delegate method for bouncing (returning `YES` causes the `progress` value to be halved, useful when emulating a UIScrollView-style bounce effect).
+✓ Delegate method for cancellation
 
-    /* Bounces the gesture if it has moved backwards past its origin */
-    - (BOOL)gestureRecognizerShouldBounce:(CXSwipeGestureRecognizer *)gestureRecognizer
-    {
-        return gestureRecognizer.translation < 0.0f;
-    }
-
-    /* Cancels the gesture if it has moved than 32 pixels, or if it is moving in the wrong direction */
+    /* Cancels the gesture if it has moved less than 32 pixels, or if it is moving in the wrong direction */
     - (BOOL)gestureRecognizerShouldCancel:(CXSwipeGestureRecognizer *)gestureRecognizer
     {
         return gestureRecognizer.translation < 32.0f && gestureRecognizer.velocity < 0.0f;
+    }
+
+✓ Delegate method for bouncing (returning `YES` causes the `progress` value to be halved, useful when emulating a UIScrollView-style bounce effect).
+
+    /* Bounces the gesture if it has moved backwards past its point of origin */
+    - (BOOL)gestureRecognizerShouldBounce:(CXSwipeGestureRecognizer *)gestureRecognizer
+    {
+        return gestureRecognizer.translation < 0.0f;
     }

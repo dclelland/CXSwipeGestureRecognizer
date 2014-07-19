@@ -44,7 +44,7 @@ UIGestureRecognizer subclass that takes much of the effort out of managing direc
     NSLog(@"velocity: %f", gestureRecognizer.velocity);
     NSLog(@"progress: %f", gestureRecognizer.progress);
 
-✓ Delegate method for cancellation
+✓ Delegate method for cancellation.
 
     /* Cancels the gesture if it has moved less than 32 pixels, or if it is moving in the wrong direction */
     - (BOOL)gestureRecognizerShouldCancel:(CXSwipeGestureRecognizer *)gestureRecognizer

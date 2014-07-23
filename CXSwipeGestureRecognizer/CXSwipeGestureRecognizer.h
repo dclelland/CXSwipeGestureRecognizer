@@ -39,6 +39,11 @@ typedef enum : NSUInteger {
 - (CXSwipeGestureDirection)initialDirection;
 - (CXSwipeGestureDirection)currentDirection;
 
+- (CGFloat)locationInDirection:(CXSwipeGestureDirection)direction;
+- (CGFloat)translationInDirection:(CXSwipeGestureDirection)direction;
+- (CGFloat)velocityInDirection:(CXSwipeGestureDirection)direction;
+- (CGFloat)progressInDirection:(CXSwipeGestureDirection)direction;
+
 - (CGFloat)location;
 - (CGFloat)translation;
 - (CGFloat)velocity;

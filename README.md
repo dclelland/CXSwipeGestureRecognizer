@@ -59,3 +59,9 @@ UIGestureRecognizer subclass that takes much of the effort out of managing direc
     {
         return gestureRecognizer.translation < 0.0f;
     }
+
+#### Todo:
+
+- Add `gestureRecognizerShouldStart:`
+- Revamp `gestureRecognizerShouldStart:` and `gestureRecognizerShouldCancel:` to be called once per update
+- Make state accessible

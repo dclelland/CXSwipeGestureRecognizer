@@ -89,25 +89,45 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
     }
 }
 
+- (CGFloat)locationInDirection:(CXSwipeGestureDirection)direction
+{
+    return CGPointValueInRectInDirection([self locationInView:self.view.superview], self.view.frame, direction);
+}
+
+- (CGFloat)translationInDirection:(CXSwipeGestureDirection)direction
+{
+    return CGPointValueInDirection([self translationInView:self.view.superview], direction);
+}
+
+- (CGFloat)velocityInDirection:(CXSwipeGestureDirection)direction
+{
+    return CGPointValueInDirection([self velocityInView:self.view.superview], direction);
+}
+
+- (CGFloat)progressInDirection:(CXSwipeGestureDirection)direction
+{
+    CGFloat maximum = CGRectValueInDirection(self.view.frame, direction);
+    return maximum ? self.translation * self.bounceFactor / maximum : 0.0f;
+}
+
 - (CGFloat)location
 {
-    return CGPointValueInRectInDirection([self locationInView:self.view.superview], self.view.frame, self.initialDirection);
+    return [self locationInDirection:self.initialDirection];
 }
 
 - (CGFloat)translation
 {
-    return CGPointValueInDirection([self translationInView:self.view.superview], self.initialDirection);
+    return [self translationInDirection:self.initialDirection];
 }
 
 - (CGFloat)velocity
 {
-    return CGPointValueInDirection([self velocityInView:self.view.superview], self.initialDirection);
+    return [self velocityInDirection:self.initialDirection];
 }
 
 - (CGFloat)progress
 {
-    CGFloat maximum = CGRectValueInDirection(self.view.frame, self.initialDirection);
-    return maximum ? self.translation * self.bounceFactor / maximum : 0.0f;
+    return [self progressInDirection:self.initialDirection];
 }
 
 #pragma mark - Actions

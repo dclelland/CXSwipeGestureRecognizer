@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum : NSUInteger {
+typedef NS_OPTIONS(NSUInteger, CXSwipeGestureDirection) {
     CXSwipeGestureDirectionNone = 0,
     CXSwipeGestureDirectionDownwards = 1 << 0,
     CXSwipeGestureDirectionLeftwards = 1 << 1,
     CXSwipeGestureDirectionUpwards = 1 << 2,
     CXSwipeGestureDirectionRightwards = 1 << 3
-} CXSwipeGestureDirection;
+};
 
 @class CXSwipeGestureRecognizer;
 

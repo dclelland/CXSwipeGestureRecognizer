@@ -34,7 +34,7 @@ typedef enum : NSUInteger {
 
 @interface CXSwipeGestureRecognizer : UIPanGestureRecognizer
 
-@property (unsafe_unretained) id<CXSwipeGestureRecognizerDelegate> delegate;
+@property (unsafe_unretained) id <CXSwipeGestureRecognizerDelegate> delegate;
 
 - (CXSwipeGestureDirection)initialDirection;
 - (CXSwipeGestureDirection)currentDirection;

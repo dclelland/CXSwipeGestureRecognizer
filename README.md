@@ -66,4 +66,3 @@ UIGestureRecognizer subclass that takes much of the effort out of managing direc
 - Revamp `gestureRecognizerShouldStart:` and `gestureRecognizerShouldCancel:` to be called once per update
 - Make state accessible
 - Internal `shouldStart` `shouldCancel` defaults instead of `respondsToSelector` checks scattered everywhere
-

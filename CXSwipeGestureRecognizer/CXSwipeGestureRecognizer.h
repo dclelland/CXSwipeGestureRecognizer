@@ -39,14 +39,20 @@ typedef NS_OPTIONS(NSUInteger, CXSwipeGestureDirection) {
 - (CXSwipeGestureDirection)initialDirection;
 - (CXSwipeGestureDirection)currentDirection;
 
-- (CGFloat)locationInDirection:(CXSwipeGestureDirection)direction;
-- (CGFloat)translationInDirection:(CXSwipeGestureDirection)direction;
-- (CGFloat)velocityInDirection:(CXSwipeGestureDirection)direction;
-- (CGFloat)progressInDirection:(CXSwipeGestureDirection)direction;
-
 - (CGFloat)location;
+- (CGFloat)locationInDirection:(CXSwipeGestureDirection)direction;
+- (CGFloat)locationInDirection:(CXSwipeGestureDirection)direction inView:(UIView *)view;
+
 - (CGFloat)translation;
+- (CGFloat)translationInDirection:(CXSwipeGestureDirection)direction;
+- (CGFloat)translationInDirection:(CXSwipeGestureDirection)direction inView:(UIView *)view;
+
 - (CGFloat)velocity;
+- (CGFloat)velocityInDirection:(CXSwipeGestureDirection)direction;
+- (CGFloat)velocityInDirection:(CXSwipeGestureDirection)direction inView:(UIView *)view;
+
 - (CGFloat)progress;
+- (CGFloat)progressInDirection:(CXSwipeGestureDirection)direction;
+- (CGFloat)progressInDirection:(CXSwipeGestureDirection)direction inView:(UIView *)view;
 
 @end

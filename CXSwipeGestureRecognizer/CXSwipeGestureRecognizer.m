@@ -17,33 +17,89 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction);
 CGFloat CGPointValueInDirection(CGPoint point, CXSwipeGestureDirection direction)
 {
     switch (direction) {
-        case CXSwipeGestureDirectionUpwards: return -point.y;
-        case CXSwipeGestureDirectionDownwards: return point.y;
-        case CXSwipeGestureDirectionLeftwards: return -point.x;
-        case CXSwipeGestureDirectionRightwards: return point.x;
-        default: return 0.0f;
+        case CXSwipeGestureDirectionDownwards: {
+            return point.y;
+        }
+        case CXSwipeGestureDirectionLeftwards: {
+            return -point.x;
+        }
+        case CXSwipeGestureDirectionUpwards: {
+            return -point.y;
+        }
+        case CXSwipeGestureDirectionRightwards: {
+            return point.x;
+        }
+        case CXSwipeGestureDirectionHorizontal: {
+            return fabs(point.x);
+        }
+        case CXSwipeGestureDirectionVertical: {
+            return fabs(point.y);
+        }
+        case CXSwipeGestureDirectionAll: {
+            return hypot(point.x, point.y);
+        }
+        default: {
+            return 0.0f;
+        }
     }
 }
 
 CGFloat CGPointValueInRectInDirection(CGPoint point, CGRect rect, CXSwipeGestureDirection direction)
 {
     switch (direction) {
-        case CXSwipeGestureDirectionUpwards: return CGRectGetMaxY(rect) - point.y;
-        case CXSwipeGestureDirectionDownwards: return CGRectGetMinY(rect) + point.y;
-        case CXSwipeGestureDirectionLeftwards: return CGRectGetMaxX(rect) - point.x;
-        case CXSwipeGestureDirectionRightwards: return CGRectGetMinX(rect) + point.x;
-        default: return 0.0f;
+        case CXSwipeGestureDirectionDownwards: {
+            return CGRectGetMinY(rect) + point.y;
+        }
+        case CXSwipeGestureDirectionLeftwards: {
+            return CGRectGetMaxX(rect) - point.x;
+        }
+        case CXSwipeGestureDirectionUpwards: {
+            return CGRectGetMaxY(rect) - point.y;
+        }
+        case CXSwipeGestureDirectionRightwards: {
+            return CGRectGetMinX(rect) + point.x;
+        }
+        case CXSwipeGestureDirectionHorizontal: {
+            CGFloat downwards = CGPointValueInRectInDirection(point, rect, CXSwipeGestureDirectionDownwards);
+            CGFloat upwards = CGPointValueInRectInDirection(point, rect, CXSwipeGestureDirectionUpwards);
+            return MIN(downwards, upwards);
+        }
+        case CXSwipeGestureDirectionVertical: {
+            CGFloat leftwards = CGPointValueInRectInDirection(point, rect, CXSwipeGestureDirectionLeftwards);
+            CGFloat rightwards = CGPointValueInRectInDirection(point, rect, CXSwipeGestureDirectionRightwards);
+            return MIN(leftwards, rightwards);
+        }
+        case CXSwipeGestureDirectionAll: {
+            CGFloat horizontal = CGPointValueInRectInDirection(point, rect, CXSwipeGestureDirectionHorizontal);
+            CGFloat vertical = CGPointValueInRectInDirection(point, rect, CXSwipeGestureDirectionVertical);
+            CGFloat multiplier = CGRectContainsPoint(rect, point) ? 1.0f : -1.0f;
+            return hypot(horizontal, vertical) * multiplier;
+        }
+        default: {
+            return 0.0f;
+        }
     }
 }
 
 CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
 {
     switch (direction) {
-        case CXSwipeGestureDirectionUpwards: return CGRectGetHeight(rect);
-        case CXSwipeGestureDirectionDownwards: return CGRectGetHeight(rect);
-        case CXSwipeGestureDirectionLeftwards: return CGRectGetWidth(rect);
-        case CXSwipeGestureDirectionRightwards: return CGRectGetWidth(rect);
-        default: return 0.0f;
+        case CXSwipeGestureDirectionUpwards:
+        case CXSwipeGestureDirectionDownwards:
+        case CXSwipeGestureDirectionVertical: {
+            return CGRectGetHeight(rect);
+        }
+        case CXSwipeGestureDirectionLeftwards:
+        case CXSwipeGestureDirectionRightwards:
+        case CXSwipeGestureDirectionHorizontal: {
+            return CGRectGetWidth(rect);
+        }
+        case CXSwipeGestureDirectionAll: {
+            return hypot(CGRectGetWidth(rect), CGRectGetHeight(rect));
+        }
+        default: {
+            return 0.0f;
+        }
     }
 }
 

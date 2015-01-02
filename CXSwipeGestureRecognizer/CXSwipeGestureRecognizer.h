@@ -13,7 +13,10 @@ typedef NS_OPTIONS(NSUInteger, CXSwipeGestureDirection) {
     CXSwipeGestureDirectionDownwards = 1 << 0,
     CXSwipeGestureDirectionLeftwards = 1 << 1,
     CXSwipeGestureDirectionUpwards = 1 << 2,
-    CXSwipeGestureDirectionRightwards = 1 << 3
+    CXSwipeGestureDirectionRightwards = 1 << 3,
+    CXSwipeGestureDirectionVertical = CXSwipeGestureDirectionDownwards | CXSwipeGestureDirectionUpwards,
+    CXSwipeGestureDirectionHorizontal = CXSwipeGestureDirectionLeftwards | CXSwipeGestureDirectionRightwards,
+    CXSwipeGestureDirectionAll = CXSwipeGestureDirectionVertical | CXSwipeGestureDirectionHorizontal
 };
 
 @class CXSwipeGestureRecognizer;

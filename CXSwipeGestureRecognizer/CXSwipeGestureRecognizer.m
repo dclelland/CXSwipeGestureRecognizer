@@ -221,30 +221,30 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
             self.initialDirection = self.currentDirection;
-            if ([gestureRecognizer.delegate respondsToSelector:@selector(gestureRecognizerDidStart:)]) {
-                [gestureRecognizer.delegate gestureRecognizerDidStart:gestureRecognizer];
+            if ([gestureRecognizer.delegate respondsToSelector:@selector(swipeGestureRecognizerDidStart:)]) {
+                [gestureRecognizer.delegate swipeGestureRecognizerDidStart:gestureRecognizer];
             }
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            if ([gestureRecognizer.delegate respondsToSelector:@selector(gestureRecognizerDidUpdate:)]) {
-                [gestureRecognizer.delegate gestureRecognizerDidUpdate:gestureRecognizer];
+            if ([gestureRecognizer.delegate respondsToSelector:@selector(swipeGestureRecognizerDidUpdate:)]) {
+                [gestureRecognizer.delegate swipeGestureRecognizerDidUpdate:gestureRecognizer];
             }
             break;
         }
         case UIGestureRecognizerStateCancelled: {
-            if ([gestureRecognizer.delegate respondsToSelector:@selector(gestureRecognizerDidCancel:)]) {
-                [gestureRecognizer.delegate gestureRecognizerDidCancel:gestureRecognizer];
+            if ([gestureRecognizer.delegate respondsToSelector:@selector(swipeGestureRecognizerDidCancel:)]) {
+                [gestureRecognizer.delegate swipeGestureRecognizerDidCancel:gestureRecognizer];
             }
             break;
         }
         case UIGestureRecognizerStateEnded: {
-            if ([gestureRecognizer.delegate respondsToSelector:@selector(gestureRecognizerShouldCancel:)]
-                && [gestureRecognizer.delegate respondsToSelector:@selector(gestureRecognizerDidCancel:)]
-                && [gestureRecognizer.delegate gestureRecognizerShouldCancel:self]) {
-                [gestureRecognizer.delegate gestureRecognizerDidCancel:gestureRecognizer];
-            } else if ([gestureRecognizer.delegate respondsToSelector:@selector(gestureRecognizerDidFinish:)]) {
-                [gestureRecognizer.delegate gestureRecognizerDidFinish:gestureRecognizer];
+            if ([gestureRecognizer.delegate respondsToSelector:@selector(swipeGestureRecognizerShouldCancel:)]
+                && [gestureRecognizer.delegate respondsToSelector:@selector(swipeGestureRecognizerDidCancel:)]
+                && [gestureRecognizer.delegate swipeGestureRecognizerShouldCancel:self]) {
+                [gestureRecognizer.delegate swipeGestureRecognizerDidCancel:gestureRecognizer];
+            } else if ([gestureRecognizer.delegate respondsToSelector:@selector(swipeGestureRecognizerDidFinish:)]) {
+                [gestureRecognizer.delegate swipeGestureRecognizerDidFinish:gestureRecognizer];
             }
             break;
         }
@@ -257,8 +257,8 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
 
 - (CGFloat)bounceFactor
 {
-    if ([self.delegate respondsToSelector:@selector(gestureRecognizerShouldBounce:)]) {
-        return [self.delegate gestureRecognizerShouldBounce:self] ? 0.5f : 1.0f;
+    if ([self.delegate respondsToSelector:@selector(swipeGestureRecognizerShouldBounce:)]) {
+        return [self.delegate swipeGestureRecognizerShouldBounce:self] ? 0.5f : 1.0f;
     } else {
         return 1.0f;
     }

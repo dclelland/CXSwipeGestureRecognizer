@@ -25,13 +25,13 @@ typedef NS_OPTIONS(NSUInteger, CXSwipeGestureDirection) {
 
 @optional
 
-- (void)gestureRecognizerDidStart:(CXSwipeGestureRecognizer *)gestureRecognizer;
-- (void)gestureRecognizerDidUpdate:(CXSwipeGestureRecognizer *)gestureRecognizer;
-- (void)gestureRecognizerDidCancel:(CXSwipeGestureRecognizer *)gestureRecognizer;
-- (void)gestureRecognizerDidFinish:(CXSwipeGestureRecognizer *)gestureRecognizer;
+- (void)swipeGestureRecognizerDidStart:(CXSwipeGestureRecognizer *)gestureRecognizer;
+- (void)swipeGestureRecognizerDidUpdate:(CXSwipeGestureRecognizer *)gestureRecognizer;
+- (void)swipeGestureRecognizerDidCancel:(CXSwipeGestureRecognizer *)gestureRecognizer;
+- (void)swipeGestureRecognizerDidFinish:(CXSwipeGestureRecognizer *)gestureRecognizer;
 
-- (BOOL)gestureRecognizerShouldCancel:(CXSwipeGestureRecognizer *)gestureRecognizer;
-- (BOOL)gestureRecognizerShouldBounce:(CXSwipeGestureRecognizer *)gestureRecognizer;
+- (BOOL)swipeGestureRecognizerShouldCancel:(CXSwipeGestureRecognizer *)gestureRecognizer;
+- (BOOL)swipeGestureRecognizerShouldBounce:(CXSwipeGestureRecognizer *)gestureRecognizer;
 
 @end
 

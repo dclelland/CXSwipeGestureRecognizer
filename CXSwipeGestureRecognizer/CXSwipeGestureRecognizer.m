@@ -115,6 +115,8 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
 
 @implementation CXSwipeGestureRecognizer
 
+@dynamic delegate;
+
 - (instancetype)init
 {
     self = [super initWithTarget:self action:@selector(onSwipe:)];
@@ -138,7 +140,7 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
     
     if (CGPointEqualToPoint(translation, CGPointZero)) {
         return CXSwipeGestureDirectionNone;
-    } else if (fabsf(translation.x) < fabsf(translation.y)) {
+    } else if (fabs(translation.x) < fabs(translation.y)) {
         return translation.y > 0.0f ? CXSwipeGestureDirectionDownwards: CXSwipeGestureDirectionUpwards;
     } else {
         return translation.x > 0.0f ? CXSwipeGestureDirectionRightwards: CXSwipeGestureDirectionLeftwards;

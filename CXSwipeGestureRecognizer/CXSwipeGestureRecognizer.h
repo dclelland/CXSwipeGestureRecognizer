@@ -37,7 +37,7 @@ typedef NS_OPTIONS(NSUInteger, CXSwipeGestureDirection) {
 
 @interface CXSwipeGestureRecognizer : UIPanGestureRecognizer
 
-@property (unsafe_unretained) id <CXSwipeGestureRecognizerDelegate> delegate;
+@property (nonatomic, assign) id <CXSwipeGestureRecognizerDelegate> delegate;
 
 - (CXSwipeGestureDirection)initialDirection;
 - (CXSwipeGestureDirection)currentDirection;

@@ -46,10 +46,10 @@ UIGestureRecognizer subclass that takes much of the effort out of managing direc
 
 ✓ Delegate method for cancellation.
 
-    /* Cancels the gesture if it has moved less than 32 pixels, or if it is moving in the wrong direction */
+    /* Cancels the gesture if it has moved less than 64 points, or if it is moving at less than 256 points per second */
     - (BOOL)swipeGestureRecognizerShouldCancel:(CXSwipeGestureRecognizer *)gestureRecognizer
     {
-        return gestureRecognizer.translation < 32.0f && gestureRecognizer.velocity < 0.0f;
+        return gestureRecognizer.translation < 64.0 && gestureRecognizer.velocity < 256.0;
     }
 
 ✓ Delegate method for bouncing (returning `YES` causes the `progress` value to be halved, useful when emulating a UIScrollView-style bounce effect).
@@ -57,7 +57,7 @@ UIGestureRecognizer subclass that takes much of the effort out of managing direc
     /* Bounces the gesture if it has moved backwards past its point of origin */
     - (BOOL)swipeGestureRecognizerShouldBounce:(CXSwipeGestureRecognizer *)gestureRecognizer
     {
-        return gestureRecognizer.translation < 0.0f;
+        return gestureRecognizer.translation < 0.0;
     }
 
 ### Full API:

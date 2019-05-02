@@ -136,7 +136,7 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
 
 - (CXSwipeGestureDirection)currentDirection
 {
-    CGPoint translation = [self translationInView:self.view.superview];
+    CGPoint translation = [self translationInView:self.view];
     
     if (CGPointEqualToPoint(translation, CGPointZero)) {
         return CXSwipeGestureDirectionNone;
@@ -220,9 +220,12 @@ CGFloat CGRectValueInDirection(CGRect rect, CXSwipeGestureDirection direction)
 
 - (void)onSwipe:(CXSwipeGestureRecognizer *)gestureRecognizer
 {
+    if (self.initialDirection == CXSwipeGestureDirectionNone) {
+        self.initialDirection = self.currentDirection;
+    }
+    
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
-            self.initialDirection = self.currentDirection;
             if ([gestureRecognizer.delegate respondsToSelector:@selector(swipeGestureRecognizerDidStart:)]) {
                 [gestureRecognizer.delegate swipeGestureRecognizerDidStart:gestureRecognizer];
             }
